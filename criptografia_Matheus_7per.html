@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Cr1ptOgrafi@A</h1>
+<hr>
+<h5>Matheus S.R Almeida 7º periodo B.S.I </h5>
+
+<script>
+	var frase = "";
+	<!-- guarda o alfabeto em um vetor -->
+	var alfabeto = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+	<!-- guarda a frase -->
+	var frase = prompt("Introduza a frase:").toLowerCase();
+	<!-- guarda a chave -->
+	var chave = prompt("Introduza a chave para criptografar (até 5 letras):");
+	<!-- pega o tamanho da chave -->
+	var x = parseInt(chave.length);
+	var resultCript = [];
+<!-- validando chave -->
+if(chave.length <= 5){
+	<!-- percorre o tamanho da frase -->
+	for (var i = 0; i < frase.length; i++)
+	{
+	<!-- verifica se não esta vazio -->
+	 if(frase[i] != ' ')
+	 {
+	 <!-- percorre o alfabeto -->
+	   for (var j = 0; j < alfabeto.length; j++)
+	   {
+	   <!-- verifica se as letra da frase é igual a do alfabeto em deteminada posicao   -->
+		 if (frase[i] == alfabeto[j])
+		 {
+		 <!-- resultado da criptografia na posicao i recebe alfabeto mais o tamanho da chave mod o tamanho do alfabeto -->
+		   resultCript[i] = alfabeto[(j + x) % alfabeto.length];
+		   break;
+		 }
+	   }
+	 }
+	 else
+	 {
+	   resultCript[i] = ' ';
+	 }
+	}
+	alert(resultCript.join(""));
+
+<!-- --------------------------------- Decriptografando ---------------------------------  -->
+<!-- mesma situação da criptografia so que usei a frase resultado da criptografia ao inves da frase inicial, e o resultado da descriptografia recebe menos o tamanho da chave -->
+	var chaveDrecript = prompt("Introduza a chave para descriptografar (até 5 letras):");
+	var y = parseInt(chaveDrecript.length);
+	var resultDescript = [];
+	<!-- validando chave -->
+	if(chaveDrecript == chave && chave.length <= 5){
+		for (var i = 0; i < resultCript.length; i++)
+		{
+		 if(resultCript[i] != ' ')
+		 {
+		   for (var j = 0; j < alfabeto.length; j++)
+		   {
+			 if (resultCript[i] == alfabeto[j])
+			 {
+			   resultDescript[i] = alfabeto[(j - y) % alfabeto.length];
+			   break;
+			 }
+		   }
+		 }
+		 else
+		 {
+		   resultDescript[i] = ' ';
+		 }
+		}
+		alert(resultDescript.join(""));
+	}
+	else{ alert("chave invalida");}
+}
+else{ alert("chave invalida");}
+</script>
+
+</body>
+</html>
